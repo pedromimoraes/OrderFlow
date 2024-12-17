@@ -10,10 +10,11 @@ namespace OrderFlow.Entities
         public List<OrderItem> Items { get; private set; } = new List<OrderItem>();
         public Client Client { get; private set; }
 
-        public Order(DateTime moment, OrderStatus status)
+        public Order(DateTime moment, OrderStatus status, Client client)
         {
             Moment = moment;
             Status = status;
+            Client = client;
         }
 
         public void AddItem(OrderItem item)
@@ -46,13 +47,13 @@ namespace OrderFlow.Entities
             stringBuilder.Append($"Client: {Client.Name} {Client.BirthDate.ToString("dd/MM/yyyy")} - {Client.Email}");
             stringBuilder.AppendLine("Order items:");
 
-            foreach(OrderItem item in Items)
+            foreach (OrderItem item in Items)
             {
                 stringBuilder.AppendLine(item.ToString());
             }
 
-            stringBuilder.AppendLine($"Total price: {Total()}");
-            
+            stringBuilder.AppendLine($"Total price: ${Total():F2}");
+
             return stringBuilder.ToString();
         }
     }

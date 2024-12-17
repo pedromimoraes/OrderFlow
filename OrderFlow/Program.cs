@@ -30,7 +30,7 @@ namespace OderFlow
             System.Console.Write("How many items to this order? ");
             int items = int.Parse(Console.ReadLine());
 
-            Order order = new Order(DateTime.Now, Enum.Parse<OrderStatus>(status));
+            Order order = new Order(DateTime.Now, Enum.Parse<OrderStatus>(status), client);
 
             for (int i = 1; i <= items; i++)
             {
