@@ -1,3 +1,4 @@
+using System.Text;
 using OrderFlow.Entities.Enums;
 
 namespace OrderFlow.Entities
@@ -7,6 +8,12 @@ namespace OrderFlow.Entities
         public DateTime Moment { get; private set; }
         public OrderStatus Status { get; private set; }
         public List<OrderItem> Items { get; private set; } = new List<OrderItem>();
+
+        public Order(DateTime moment, OrderStatus status)
+        {
+            Moment = moment;
+            Status = status;
+        }
 
         public void AddItem(OrderItem item)
         {
@@ -27,6 +34,5 @@ namespace OrderFlow.Entities
             }
             return sum;
         }
-
     }
 }
