@@ -24,7 +24,7 @@ namespace OderFlow
 
             System.Console.WriteLine("Enter order data:");
 
-            System.Console.Write("Status (PendingPayment | Processing | Shipped | Delivered): ");
+            System.Console.WriteLine("Status (PendingPayment | Processing | Shipped | Delivered):");
             string status = Console.ReadLine();
 
             System.Console.Write("How many items to this order? ");
@@ -46,23 +46,10 @@ namespace OderFlow
                 int productQuantity = int.Parse(Console.ReadLine());
 
                 Product product = new Product(productName, productPrice);
-                OrderItem orderItem = new OrderItem(productQuantity, product);
+                OrderItem orderItem = new OrderItem(productQuantity, productPrice, product);
                 order.AddItem(orderItem);
-
             }
-            StringBuilder stringBuilder = new StringBuilder();
-
-            stringBuilder.AppendLine("ORDER SUMMARY:");
-            stringBuilder.AppendLine($"Order moment: {order.Moment.ToString()}");
-            stringBuilder.Append($"Order status: {order.Status.ToString()}");
-            stringBuilder.Append($"Client: {client.Name} {client.BirthDate.ToString()} - {client.Email}");
-            stringBuilder.AppendLine("Order items:");
-
-            foreach(OrderItem orderItem in order.Items)
-            {
-                stringBuilder.AppendLine($"Quantity: {}, ${orderItem.Price}, Quantity: {orderItem.Quantity}, Subtotal: ${orderItem.SubTotal()}");
-            }
-
+            System.Console.WriteLine(order);
         }
     }
 }
